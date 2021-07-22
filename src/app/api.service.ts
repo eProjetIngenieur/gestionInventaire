@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -7,11 +6,73 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiService {
+  dataArr:any;
+  fourArr:any;
+  constructor(private httpClient:HttpClient) { }
 
-  constructor(private http:HttpClient) { }
+  
+  getData(){ 
+    return this.httpClient.get('http://127.0.0.1:8000/group');
+ }
 
-  onSendService(formData:FormData):Observable<any>{
-   return this.http.post<any>('http://localhost/',formData)
-   
-  }
+ insertData(data)
+ {
+  return this.httpClient.post('http://127.0.0.1:8000/addgroup',data);
+
+ }
+
+
+
+ getDataUser(){ 
+  return this.httpClient.get('http://127.0.0.1:8000/user');
+} 
+
+insertDataUser(data)
+{
+ return this.httpClient.post('http://127.0.0.1:8000/adduser',data);
+
+}
+
+ 
+getDataArt(){ 
+    return this.httpClient.get('http://127.0.0.1:8000/article');
+ }
+ insertDataArt(data)
+ {
+  return this.httpClient.post('http://127.0.0.1:8000/addArticle',data);
+
+ }
+ getFournisseur(){
+  return this.httpClient.get('http://127.0.0.1:8000/fournisseur');
+ }
+
+ getType(){
+  return this.httpClient.get('http://127.0.0.1:8000/type');
+
+ }
+
+ getLocal(){
+  return this.httpClient.get('http://127.0.0.1:8000/local');
+
+ }
+
+ getFourID(data)
+ {
+  return this.httpClient.post('http://127.0.0.1:8000/fournisseurID',data);
+
+ }
+ getTypeID(data){
+  return this.httpClient.post('http://127.0.0.1:8000/typeID',data);
+ }
+ getLocalID(data){
+  return this.httpClient.post('http://127.0.0.1:8000/localID',data);
+ }
+
+ getGroupID(data)
+ {
+  return this.httpClient.post('http://127.0.0.1:8000/utilisateur',data);
+
+ }
+ 
+  
 }
