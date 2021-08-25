@@ -281,12 +281,13 @@
                           <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
             <ul class="sub">
+              <li><a class="" routerLink="/Permission">Permission</a></li>
               <li><a class="" routerLink="/Group">Groupes</a></li>
               <li><a class="" routerLink="/User">utilisateurs</a></li>
             </ul>
           </li>
           <li class="sub-menu">
-            <a href="" class="">
+            <a  class="">
                           <i class="icon_desktop"></i>
                           <span>Article</span>
                           <span class="menu-arrow arrow_carrot-right"></span>
@@ -349,26 +350,68 @@
               </div>
               <div class="panel-body">
                 <div class="col-md-6">
-                  <form (ngSubmit)="insertDataUser()" method="post" action="add_user.php">
+                  <form (ngSubmit)="submit()" [formGroup]="form">
                     <div class="form-group">
                         <label for="name">Nom</label>
-                        <input type="text" class="form-control" name="full-name" placeholder="nom complet" [(ngModel)]="user.nom_complet">
-                    </div>
+                        <input type="text" class="form-control" formControlName="name" name="name" placeholder="nom complet" [ngClass]="{'is-invalid' : submitted && f.name.errors}">
+                    
+                      <div *ngIf="submitted && f.name.errors"  class="alert alert-block alert-danger fade in">
+                        <div *ngIf="f.name.errors.required">
+                          vous devez saisir le nom
+                        </div>
+                      </div>  
+                      </div>
                     <div class="form-group">
-                        <label for="username">Username</label>
-                        <input type="text" class="form-control" name="username" placeholder="Username" [(ngModel)]="user.nom_utilisateur">
-                    </div>
+                        <label for="email">Email</label>
+                        <input type="text" class="form-control" formControlName="email" name="email" placeholder="Email" [ngClass]="{'is-invalid' : submitted && f.email.errors}">
+                    
+                        <div *ngIf="submitted && f.email.errors"  class="alert alert-block alert-danger fade in">
+                          <div *ngIf="f.email.errors.required">
+                            vous devez saisir l'email de l'utilisateur
+                          </div>
+                          <div *ngIf="f.email.errors.email">
+                            vous devez saisir une addresse  email valide
+                          </div>
+                        </div>  
+                      </div>
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input type="password" class="form-control" name ="password"  placeholder="Password" [(ngModel)]="user.password">
-                    </div>
-                    <div class="form-group">
-                      <label for="level">Role</label>
-                      <select class="form-control" name="niveau" [(ngModel)]="user.niveau" (change)="getGroupID($event)" >
-                        <option value="">choisir --Rôle</option>
-                        <option *ngFor="let obj of GroupArr" value="{{obj.id_group}}">{{obj.group_nom}}</option>
-                      </select>
-                    </div>
+                        <input type="password" class="form-control" formControlName="password" name ="password"  placeholder="Password"  [ngClass]="{'is-invalid' : submitted && f.password.errors}">
+                        <div *ngIf="submitted && f.password.errors" class="alert alert-block alert-danger fade in">
+                          <div *ngIf="f.password.errors.required">
+                            vous devez saisir le mot de passe
+                          </div>
+
+                          <div *ngIf="f.password.errors.minlength">
+                            mot de passe doit contenir au moins 6 caractères
+                          </div>
+                        </div> 
+                      </div>
+
+                      <div class="form-group">
+                        <label for="confirm_password">Password</label>
+                        <input type="password" class="form-control" formControlName="confirmPassword" name ="confirm_password"  placeholder="confirmez Password">
+                        
+                        <div *ngIf="submitted && f.confirmPassword.errors"  class="alert alert-block alert-danger fade in">
+                          <div *ngIf="f.confirmPassword.errors.required">
+                            vous devez confirmer le mot de passe
+                          </div>
+
+                          <div *ngIf="f.confirmPassword.errors.mustMatch">
+                              les deux mots de passe ne sont pas compatible
+                          </div>
+                        </div> 
+                      </div>
+
+                      <div class="form-group">
+                        <label for="roles">Role</label>
+                        <select class="form-control" name="roles" formControlName="roles" >
+                          <option value="">choisir --Rôle</option>
+                          <option value="admin">admin</option>
+                          <option value="user">user</option>
+                        </select>
+                      </div>
+                   
                     <div class="form-group clearfix">
                       <button type="submit" name="add_user" class="btn btn-primary">Ajouter</button>
                     </div>

@@ -1,0 +1,44 @@
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6 col-md-4 col-md-offset-4">
+            <div class="account-wall">
+                <img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
+                    alt="">
+                <form class="form-signin" (ngSubmit)="submit()" [formGroup]="form">
+                <input type="text" class="form-control" formControlName="email" placeholder="Email" name="email">
+                <div *ngIf="submitted && f.email.errors"  class="alert alert-block alert-danger fade in">
+                    <div *ngIf="f.email.errors.required">
+                      vous devez saisir l'email de l'utilisateur
+                    </div>
+                    <div *ngIf="f.email.errors.email">
+                      vous devez saisir une addresse  email valide
+                    </div>
+                  </div> 
+                <input type="password" class="form-control" formControlName="password" placeholder="mot de passe" name="password">
+                <div *ngIf="submitted && f.password.errors" class="alert alert-block alert-danger fade in">
+                    <div *ngIf="f.password.errors.required">
+                      vous devez saisir le mot de passe
+                    </div>
+
+                    <div *ngIf="f.password.errors.minlength">
+                      mot de passe doit contenir au moins 6 caractères
+                    </div>
+                  </div> 
+                <button class="btn btn-lg btn-primary btn-block" type="submit">
+                    Se connecter</button>
+                <label class="checkbox pull-left">
+                    <input type="checkbox" value="remember-me">
+                    Remember me
+                </label>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+

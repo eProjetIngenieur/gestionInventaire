@@ -1,0 +1,25 @@
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6 col-md-4 col-md-offset-4">
+            <div class="account-wall">
+                <img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
+                    alt="">
+                <form class="form-signin" (ngSubmit)="onSubmit(loginForm)" #loginForm = "ngForm">
+                <input type="text" class="form-control" placeholder="nom d'utilisateur" name="nom" ngModel required autofocus >
+                <input type="password" class="form-control" placeholder="mot de passe" name="password" ngModel required>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">
+                    Se connecter</button>
+                <label class="checkbox pull-left">
+                    <input type="checkbox" value="remember-me">
+                    Remember me
+                </label>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

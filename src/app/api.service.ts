@@ -21,6 +21,15 @@ export class ApiService {
 
  }
 
+ getInv(){
+  return this.httpClient.get('http://127.0.0.1:8000/inv');
+
+ }
+
+insertInventaire(data){
+  return this.httpClient.post('http://127.0.0.1:8000/addinventaire',data);
+
+}
 
 
  getDataUser(){ 
@@ -73,6 +82,45 @@ getDataArt(){
   return this.httpClient.post('http://127.0.0.1:8000/utilisateur',data);
 
  }
+
+ getInventaire(data)
+ {
+  return this.httpClient.post('http://127.0.0.1:8000/inventaire',data);
+
+ }
  
-  
+ deleteInventaire(){
+   return this.httpClient.delete('http://127.0.0.1:8000/deleteInventaire');
+ }
+
+
+ registerUser(data){
+   return this.httpClient.post('http://127.0.0.1:8000/register',data);
+ }
+
+ login(data){
+  return this.httpClient.post('http://127.0.0.1:8000/login',data);
+
+ }
+
+
+ addMenu(data)
+ {
+  return this.httpClient.post('http://127.0.0.1:8000/addmenu',data);
+
+ }
+
+ getMenuData(){ 
+  return this.httpClient.get('http://127.0.0.1:8000/menu');
+}
+
+addsousMenu(data){
+  return this.httpClient.post('http://127.0.0.1:8000/addSousmenu',data);
+
+}
+
+getsousMenu(){
+  return this.httpClient.get('http://127.0.0.1:8000/sousmenu');
+
+}
 }
